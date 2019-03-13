@@ -75,9 +75,9 @@ function! Vim_Markdown_Preview()
     call system('Markdown.pl "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   elseif g:vim_markdown_preview_pandoc == 1
     if g:vim_markdown_preview_pandoc_mathjax == 1
-      call system('pandoc --standalone --mathjax"' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
+      call system('pandoc --standalone --mathjax "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
     elseif g:vim_markdown_preview_pandoc_mathml == 1
-        call system('pandoc --standalone --mathml"' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
+        call system('pandoc --standalone --mathml "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
     else
         call system('pandoc --standalone "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
     endif
