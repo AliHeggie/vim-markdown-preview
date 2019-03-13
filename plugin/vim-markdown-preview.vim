@@ -80,6 +80,7 @@ function! Vim_Markdown_Preview()
         call system('pandoc --standalone --mathml"' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
     else
         call system('pandoc --standalone "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
+    endif
   else
     call system('markdown "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   endif
