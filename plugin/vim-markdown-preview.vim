@@ -50,6 +50,14 @@ if !exists("g:vim_markdown_preview_pandoc")
   let g:vim_markdown_preview_pandoc = 0
 endif
 
+if !exists("g:vim_markdown_preview_pandoc_mathjax")
+  let g:vim_markdown_preview_pandoc_mathjax = 0
+endif
+
+if !exists("g:vim_markdown_preview_pandoc_mathml")
+  let g:vim_markdown_preview_pandoc_mathml = 0
+endif
+
 if !exists("g:vim_markdown_preview_use_xdg_open")
     let g:vim_markdown_preview_use_xdg_open = 0
 endif
@@ -66,7 +74,12 @@ function! Vim_Markdown_Preview()
   elseif g:vim_markdown_preview_perl == 1
     call system('Markdown.pl "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   elseif g:vim_markdown_preview_pandoc == 1
-    call system('pandoc --standalone "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
+    if g:vim_markdown_preview_pandoc_mathjax == 1
+      call system('pandoc --standalone --mathjax"' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
+    elseif g:vim_markdown_preview_pandoc_mathml == 1
+        call system('pandoc --standalone --mathml"' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
+    else
+        call system('pandoc --standalone "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   else
     call system('markdown "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   endif
